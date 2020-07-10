@@ -20,7 +20,6 @@ struct View
   template<typename Range>
   View(Range& elements);
 
-  template<>
   View(View& elements);
 
   void Add(Element* element);

@@ -13,7 +13,6 @@ View::View(Range& elements)
   }
 }
 
-template<>
 View::View(View& elements)
   : View(elements.elements)
 {}

@@ -2,6 +2,7 @@
 
 #include <algorithm>
 #include <iterator>
+#include <memory>
 
 namespace synthesis {
 
@@ -13,7 +14,6 @@ FastView::FastView(Range& elements)
   }
 }
 
-template<>
 FastView::FastView(FastView& elements)
   : FastView(elements.elements)
 {}

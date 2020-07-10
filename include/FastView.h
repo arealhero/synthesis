@@ -20,7 +20,6 @@ struct FastView
   template<typename Range>
   FastView(Range& elements);
 
-  template<>
   FastView(FastView& elements);
 
   void Add(Element* element);
