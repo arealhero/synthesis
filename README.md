@@ -4,6 +4,17 @@
 * macOS 10.15.5 Catalina (clang version 10.0.0, CMake version 3.17.3)
 * Linux Mint 20 Ulyana (Cinnamon, g++ version 9.3.0, CMake version 3.16.3)
 
+## Установка
+
+```shell script
+git clone https://github.com/arealhero/synthesis
+cd synthesis
+mkdir build
+cd build
+cmake ..
+make
+```
+
 ## Сравнение `View` и `FastView`
 
 | Class name | Add         | Remove      | Find        | Get    |
