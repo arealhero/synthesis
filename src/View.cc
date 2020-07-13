@@ -31,16 +31,24 @@ void View::Remove(Element* element)
   }
 }
 
-Element* View::Find(const char* name) const
+std::vector<Element*> View::Find(const std::string &name, bool isCaseSensitive) const
 {
-  auto fakeElement = std::make_shared<Element>(name);
-  auto it = std::lower_bound(elements.begin(), elements.end(), fakeElement.get(), ElementComparator);
+  std::vector<Element*> found;
 
-  if (it == elements.end() || (*it)->name != name) {
-    return nullptr;
+  auto comparator = [&isCaseSensitive](unsigned char lhs, unsigned char rhs) {
+    return isCaseSensitive ? (lhs == rhs) : (std::toupper(lhs) == std::toupper(rhs));
+  };
+
+  for (auto& element : elements) {
+    auto filename = element->name;
+    auto it = std::search(filename.begin(), filename.end(), name.begin(), name.end(), comparator);
+
+    if (it != filename.end()) {
+      found.push_back(element);
+    }
   }
 
-  return *it;
+  return found;
 }
 
 int View::Count() const

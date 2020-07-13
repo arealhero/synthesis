@@ -25,7 +25,7 @@ struct View
   void Add(Element* element);
   void Remove(Element* element);
 
-  Element* Find(const char* name) const;
+  [[nodiscard]] std::vector<Element*> Find(const std::string& name, bool isCaseSensitive) const;
 
   [[nodiscard]] int Count() const;
   [[nodiscard]] Element* Get(int i) const;

@@ -19,8 +19,8 @@ make
 
 | Class name | Add         | Remove      | Find        | Get    |
 |------------|-------------|-------------|-------------|--------|
-| `View`     | `O(n)`      | `O(n)`      | `O(log(n))` | `O(1)` |
-| `FastView` | `O(log(n))` | `O(log(n))` | `O(log(n))` | `O(n)` |
+| `View`     | `O(n)`      | `O(n)`      | `O(n)` | `O(1)` |
+| `FastView` | `O(log(n))` | `O(log(n))` | `O(n)` | `O(n)` |
 
 В описании задания сказано, что
 

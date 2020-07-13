@@ -1,6 +1,7 @@
 #include <FastView.h>
 
 #include <algorithm>
+#include <iostream>
 #include <iterator>
 #include <memory>
 
@@ -28,16 +29,24 @@ void FastView::Remove(Element* element)
   elements.erase(element);
 }
 
-Element* FastView::Find(const char* name) const
+std::vector<Element*> FastView::Find(const std::string& name, bool isCaseSensitive) const
 {
-  auto fakeElement = std::make_shared<Element>(name);
-  auto it = elements.find(fakeElement.get());
+  std::vector<Element*> found;
 
-  if (it == elements.end()) {
-    return nullptr;
+  auto comparator = [&isCaseSensitive](unsigned char lhs, unsigned char rhs) {
+    return isCaseSensitive ? (lhs == rhs) : (std::toupper(lhs) == std::toupper(rhs));
+  };
+
+  for (auto& element : elements) {
+    auto filename = element->name;
+    auto it = std::search(filename.begin(), filename.end(), name.begin(), name.end(), comparator);
+
+    if (it != filename.end()) {
+      found.push_back(element);
+    }
   }
 
-  return *it;
+  return found;
 }
 
 int FastView::Count() const

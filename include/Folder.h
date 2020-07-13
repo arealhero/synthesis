@@ -12,7 +12,7 @@
 
 namespace synthesis {
 
-using FileView = FastView;
+using FileView = View;
 
 class Folder
 {
@@ -31,7 +31,7 @@ class Folder
 
   void Print(std::ostream& out) const;
 
-  [[nodiscard]] std::vector<Element*> RecursiveFindFile(const std::string& filename);
+  [[nodiscard]] std::vector<Element*> RecursiveFindFile(const std::string& filename, bool isCaseSensitive = true) const;
 
  private:
   std::string name;

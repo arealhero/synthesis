@@ -41,17 +41,15 @@ void Folder::Print(std::ostream& out) const
   Print(out, "");
 }
 
-std::vector<Element*> Folder::RecursiveFindFile(const std::string& filename)
+std::vector<Element*> Folder::RecursiveFindFile(const std::string& filename, bool isCaseSensitive) const
 {
   std::vector<Element*> foundFiles;
 
-  Element* found = files.Find(filename.c_str());
-  if (found != nullptr) {
-    foundFiles.push_back(found);
-  }
+  auto found = files.Find(filename, isCaseSensitive);
+  foundFiles.insert(foundFiles.end(), found.begin(), found.end());
 
   for (auto& folder : folders) {
-    auto subfolderFoundedFiles = folder->RecursiveFindFile(filename);
+    auto subfolderFoundedFiles = folder->RecursiveFindFile(filename, isCaseSensitive);
 
     foundFiles.insert(foundFiles.end(), subfolderFoundedFiles.begin(), subfolderFoundedFiles.end());
   }
